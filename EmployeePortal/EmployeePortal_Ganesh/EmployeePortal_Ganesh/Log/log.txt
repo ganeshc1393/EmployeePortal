@@ -1,0 +1,7 @@
+ERROR 2021-05-30 20:07:08,604 162236ms HomeController         CreatEmployee      - System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at EmployeePortal_Ganesh.Models.EmployeeProcess.InsertEmployeeDetails(EmployeeDetails objEmpDetails) in C:\Ganesh\Projects\EmployeePortal\EmployeePortal_Ganesh\EmployeePortal_Ganesh\Models\EmployeeProcess.cs:line 57
+   at EmployeePortal_Ganesh.Controllers.EmployeeController.CreatEmployee(EmployeeDetails objEmpDetials) in C:\Ganesh\Projects\EmployeePortal\EmployeePortal_Ganesh\EmployeePortal_Ganesh\Controllers\EmployeeController.cs:line 51
+ERROR 2021-06-02 09:15:13,344  7918ms HomeController         ExportToCsv        - Index (zero based) must be greater than or equal to zero and less than the size of the argument list.

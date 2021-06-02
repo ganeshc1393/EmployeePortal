@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EmployeePortal_GaneshModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="emp_id" />
+    </Key>
+    <Property Name="emp_id" Type="int" Nullable="false" />
+    <Property Name="first_name" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="last_name" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="gender" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="dob" Type="date" Nullable="false" />
+    <Property Name="pan_num" Type="char" MaxLength="15" />
+    <Property Name="aadhaar_num" Type="char" MaxLength="15" />
+    <Property Name="mobile_num" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="email_id" Type="char" MaxLength="150" Nullable="false" />
+    <Property Name="office_mail" Type="char" MaxLength="150" Nullable="false" />
+    <Property Name="permanent_address" Type="text" />
+    <Property Name="present_address" Type="text" />
+    <Property Name="blood_group" Type="char" MaxLength="5" />
+    <Property Name="profile_pict" Type="char" MaxLength="200" />
+    <Property Name="doj" Type="date" Nullable="false" />
+    <Property Name="emp_level" Type="int" Nullable="false" />
+    <Property Name="post_name" Type="char" MaxLength="30" Nullable="false" />
+    <Property Name="basic_pay" Type="int" Nullable="false" />
+    <Property Name="house_allowance" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="employment_history">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="emp_id" Type="int" Nullable="false" />
+    <Property Name="organization_name" Type="int" Nullable="false" />
+    <Property Name="from_date" Type="date" Nullable="false" />
+    <Property Name="until_date" Type="date" Nullable="false" />
+    <Property Name="location" Type="char" MaxLength="30" Nullable="false" />
+    <Property Name="country" Type="text" />
+    <Property Name="post" Type="char" MaxLength="30" Nullable="false" />
+    <Property Name="skill_used" Type="text" />
+  </EntityType>
+  <Association Name="FK__employmen__emp_i__267ABA7A">
+    <End Role="employee" Type="Self.employee" Multiplicity="1" />
+    <End Role="employment_history" Type="Self.employment_history" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="emp_id" />
+      </Principal>
+      <Dependent Role="employment_history">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EmployeePortal_GaneshModelStoreContainer">
+    <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employment_history" EntityType="Self.employment_history" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__employmen__emp_i__267ABA7A" Association="Self.FK__employmen__emp_i__267ABA7A">
+      <End Role="employee" EntitySet="employee" />
+      <End Role="employment_history" EntitySet="employment_history" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

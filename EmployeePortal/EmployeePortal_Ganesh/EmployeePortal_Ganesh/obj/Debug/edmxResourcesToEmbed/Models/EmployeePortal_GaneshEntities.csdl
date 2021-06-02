@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EmployeePortal_GaneshModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="emp_id" />
+    </Key>
+    <Property Name="emp_id" Type="Int32" Nullable="false" />
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="gender" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="dob" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="pan_num" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="aadhaar_num" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="mobile_num" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="email_id" Type="String" MaxLength="150" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="office_mail" Type="String" MaxLength="150" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="permanent_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="present_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="blood_group" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="profile_pict" Type="String" MaxLength="200" FixedLength="true" Unicode="false" />
+    <Property Name="doj" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="emp_level" Type="Int32" Nullable="false" />
+    <Property Name="post_name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="basic_pay" Type="Int32" Nullable="false" />
+    <Property Name="house_allowance" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="employment_history" Relationship="Self.FK__employmen__emp_i__286302EC" FromRole="employee" ToRole="employment_history" />
+  </EntityType>
+  <EntityType Name="employment_history">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="emp_id" Type="Int32" Nullable="false" />
+    <Property Name="organization_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="from_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="until_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="location" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="country" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="post" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="skill_used" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="employee" Relationship="Self.FK__employmen__emp_i__286302EC" FromRole="employment_history" ToRole="employee" />
+  </EntityType>
+  <Association Name="FK__employmen__emp_i__286302EC">
+    <End Role="employee" Type="Self.employee" Multiplicity="1" />
+    <End Role="employment_history" Type="Self.employment_history" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="emp_id" />
+      </Principal>
+      <Dependent Role="employment_history">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EmployeePortal_GaneshEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="employees" EntityType="Self.employee" />
+    <EntitySet Name="employment_history" EntityType="Self.employment_history" />
+    <AssociationSet Name="FK__employmen__emp_i__286302EC" Association="Self.FK__employmen__emp_i__286302EC">
+      <End Role="employee" EntitySet="employees" />
+      <End Role="employment_history" EntitySet="employment_history" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

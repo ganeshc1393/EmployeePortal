@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EmployeePortal_GaneshModelStoreContainer" CdmEntityContainer="EmployeePortal_GaneshEntities">
+    <EntitySetMapping Name="employees">
+      <EntityTypeMapping TypeName="EmployeePortal_GaneshModel.employee">
+        <MappingFragment StoreEntitySet="employee">
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="pan_num" ColumnName="pan_num" />
+          <ScalarProperty Name="aadhaar_num" ColumnName="aadhaar_num" />
+          <ScalarProperty Name="mobile_num" ColumnName="mobile_num" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="office_mail" ColumnName="office_mail" />
+          <ScalarProperty Name="permanent_address" ColumnName="permanent_address" />
+          <ScalarProperty Name="present_address" ColumnName="present_address" />
+          <ScalarProperty Name="blood_group" ColumnName="blood_group" />
+          <ScalarProperty Name="profile_pict" ColumnName="profile_pict" />
+          <ScalarProperty Name="doj" ColumnName="doj" />
+          <ScalarProperty Name="emp_level" ColumnName="emp_level" />
+          <ScalarProperty Name="post_name" ColumnName="post_name" />
+          <ScalarProperty Name="basic_pay" ColumnName="basic_pay" />
+          <ScalarProperty Name="house_allowance" ColumnName="house_allowance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employment_history">
+      <EntityTypeMapping TypeName="EmployeePortal_GaneshModel.employment_history">
+        <MappingFragment StoreEntitySet="employment_history">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="organization_name" ColumnName="organization_name" />
+          <ScalarProperty Name="from_date" ColumnName="from_date" />
+          <ScalarProperty Name="until_date" ColumnName="until_date" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="post" ColumnName="post" />
+          <ScalarProperty Name="skill_used" ColumnName="skill_used" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

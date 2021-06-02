@@ -1,0 +1,417 @@
+﻿@model EmployeePortal_Ganesh.Models.EmployeeDetails
+@{
+    ViewBag.Title = "Add/Update Employee Record";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center;font-weight:bold" class="form-control">@ViewBag.Title</h2>
+@if (Model.modelstate_result == "False")
+{
+    <h2 style="text-align:center;font-weight:bold; color:red" class="form-control">@Model.modelstate_message</h2>
+}
+@using (Html.BeginForm("CreatEmployee", "Employee", FormMethod.Post, new { @id = "frmEmployee" }))
+{
+    @Html.HiddenFor(m=>m.b_edit_falge)
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="sticky-anchor"></div>
+            <div class="portlet-body form">
+                <div class="form-horizontal">
+                    <div class="form-body">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Emp No# <span style="color: red;">* </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.TextBoxFor(m => m.emp_no, new { @class = "form-control", @maxlength = "5" })
+                                                @Html.HiddenFor(m => m.emp_no)
+                                                @Html.ValidationMessageFor(m => m.emp_no)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Firstname <span style="color: red;">* </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.TextBoxFor(m => m.first_name, new { @class = "form-control", @maxlength = "50" })
+                                                @Html.ValidationMessageFor(m => m.first_name)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Lastname <span style="color: red;">* </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.TextBoxFor(m => m.last_name, new { @class = "form-control", @maxlength = "50" })
+                                                @Html.ValidationMessageFor(m => m.last_name)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Date of birth <span style="color: red;">* </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.TextBoxFor(model => model.dob, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker", placeholder = "DD/MM/YYYY", maxlength = "100" })
+                                                @Html.ValidationMessageFor(m => m.dob)
+                                                <span id="lblError" style="color:Red"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Gender <span style="color: red;">* </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.DropDownListFor(x => x.gender, new List<SelectListItem>
+                                                {
+                                                    new SelectListItem() {Text = "M", Value="M"},
+                                                    new SelectListItem() {Text = "F", Value="F"},
+                                                    new SelectListItem() {Text = "ND", Value="ND"}
+                                                }, "Select", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.gender)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Mobile num <span style="color: red;">* </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.TextBoxFor(m => m.mobile_num, new { @class = "form-control", @maxlength = "10" })
+                                                @Html.ValidationMessageFor(m => m.mobile_num)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Email ( Personal) <span style="color: red;">* </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.TextBoxFor(m => m.email_id, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.email_id)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Joining date <span style="color: red;">* </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.TextBoxFor(model => model.doj, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker", placeholder = "DD/MM/YYYY" })
+
+                                                @Html.ValidationMessageFor(m => m.doj)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Employee level <span style="color: red;">* </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.DropDownListFor(x => x.emp_level, new List<SelectListItem>
+                                                {
+                                                    new SelectListItem() {Text = "7", Value="7"},
+                                                    new SelectListItem() {Text = "8", Value="8"},
+                                                    new SelectListItem() {Text = "9", Value="9"},
+                                                    new SelectListItem() {Text = "10", Value="10"},
+                                                    new SelectListItem() {Text = "11", Value="11"},
+                                                    new SelectListItem() {Text = "12", Value="12"},
+                                                    new SelectListItem() {Text = "13", Value="13"}
+                                                }, "Select", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.emp_level)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Post <span style="color: red;">* </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.TextBoxFor(m => m.post, new { @class = "form-control", @maxlength = "30" })
+                                                @Html.ValidationMessageFor(m => m.post)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Blood group  <span style="color: red;"> </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.DropDownListFor(x => x.blood_group, new List<SelectListItem>
+                                                {
+                                                    new SelectListItem() {Text = "A+", Value="A+"},
+                                                    new SelectListItem() {Text = "B+", Value="B+"},
+                                                    new SelectListItem() {Text = "O-", Value="O-"},
+                                                    new SelectListItem() {Text = "O+", Value="O+"},
+                                                    new SelectListItem() {Text = "AB+", Value="AB+"},
+                                                    new SelectListItem() {Text = "AB-", Value="AB-"}
+                                                }, "Select", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.blood_group)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Basic pay <span style="color: red;">* </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.TextBoxFor(m => m.basic_pay, new { @class = "form-control", @maxlength = "8" })
+                                                @Html.ValidationMessageFor(m => m.basic_pay)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            House allowance <span style="color: red;">* </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.TextBoxFor(m => m.house_allowance, new { @class = "form-control", @maxlength = "5" })
+                                                @Html.ValidationMessageFor(m => m.house_allowance)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Pan card no <span style="color: red;"> </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.TextBoxFor(m => m.pan_num, new { @class = "form-control", @maxlength = "10" })
+                                                @Html.ValidationMessageFor(m => m.pan_num)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Aadhaar card no <span style="color: red;"> </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.TextBoxFor(m => m.aadhaar_num, new { @class = "form-control", @maxlength = "12" })
+                                                @Html.ValidationMessageFor(m => m.aadhaar_num)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Permanent address  <span style="color: red;"> </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.TextAreaFor(m => m.permanent_address, new { @class = "form-control", @maxlength = "200" })
+                                                @Html.ValidationMessageFor(m => m.permanent_address)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Present address  <span style="color: red;"> </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.TextAreaFor(m => m.present_address, new { @class = "form-control", @maxlength = "200" })
+                                                @Html.ValidationMessageFor(m => m.present_address)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-10 col-sm-10 col-xs-12 text-right">
+                                    <div class="form-group">
+                                        <label class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                            Email ( Office) <span style="color: red;">* </span>
+                                        </label>
+                                        <div class="col-lg-6 col-md-8 col-sm-7 col-xs-7">
+                                            <div class="input-icon right">
+                                                <i class="fa"></i>
+                                                @Html.TextBoxFor(m => m.office_mail, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.office_mail)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="sticky-anchor"></div>
+            <div id="dvHeader" class="portlet box green" style="text-align:center">
+                <div class="tools">
+                    <button type="button" class="btn btn-default" id="dtnSubmit">Submit</button>
+                    <button type="button" class="btn btn-default" id="btnCancle">Cancle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Scripts/jquery-1.12.4.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script type="text/javascript">
+        $("#dtnSubmit").click(function () {
+            var empvalidate = $('.input-icon span').text();
+            if (empvalidate == "") {
+                $("#frmEmployee").submit();
+            }
+            else {
+                var flage = $("#b_edit_falge").val();
+                if (flage == "True") {
+                    $("#frmEmployee").submit();
+                }
+            }
+        });
+        
+        $(document).ready(function () {
+            $(".datepicker").datepicker({ dateFormat: 'dd/mm/yy' });
+
+            var flage = $("#b_edit_falge").val();
+            if (flage == "True") {
+                $("#emp_no").attr('disabled', 'disabled');
+            }
+            else {
+                $('#emp_no').removeAttr("disabled");
+            }
+           
+        });
+
+        $("#btnCancle").click(function () {
+            window.location.href="@Url.Action("EmployeeList", "Employee")";
+        });
+
+        $("#dob").change(function () {
+            var dateString = $("#dob").val();
+            ValidateDOB(dateString);
+        });
+
+        function ValidateDOB(dateString) {
+            var lblError = $("#lblError");
+            var parts = dateString.split("/");
+            var dtDOB = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
+            var dtCurrent = new Date();
+            lblError.html("Please  enter a valid date , age must be >=20")
+            if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 20) {
+                return false;
+            }
+
+            if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 20) {
+
+                if (dtCurrent.getMonth() < dtDOB.getMonth()) {
+                    return false;
+                }
+                if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+                    if (dtCurrent.getDate() < dtDOB.getDate()) {
+                        return false;
+                    }
+                }
+            }
+            lblError.html("");
+            return true;
+        }
+    </script>
+}
+
+
+
+
